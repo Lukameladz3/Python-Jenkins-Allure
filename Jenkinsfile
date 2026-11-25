@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    parameters {
-        choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Browser to run tests in')
-    }
-
     environment {
         // Keep Playwright browsers inside the workspace so the Jenkins service user can find them
         PLAYWRIGHT_BROWSERS_PATH = "${WORKSPACE}\\ms-playwright"
@@ -12,11 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
 
         stage('Setup Python env') {
             steps {
